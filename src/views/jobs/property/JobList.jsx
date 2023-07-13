@@ -1,7 +1,11 @@
 import React from 'react';
 import JobListCard from '../../../components/card/JobListCard';
 
-const JobList = () => {
+const JobList = ({ 
+    jobs,
+    isLoading,
+    lastJobsElementRef, 
+}) => {
     return (
         <div 
             className='
@@ -14,12 +18,25 @@ const JobList = () => {
                 h-[350px]
             '
         >
-            <JobListCard />
-            <JobListCard />
-            <JobListCard />
-            <JobListCard />
-            <JobListCard />
-            <JobListCard />
+            {jobs?.map((list, listIndex) => {
+                if(jobs.length === listIndex + 1) {
+                    return (
+                        <JobListCard 
+                            key={listIndex} 
+                            lastJobsElementRef={lastJobsElementRef}
+                            jobs={list}
+                        />
+                    )
+                } else {
+                    return (
+                        <JobListCard 
+                            key={listIndex} 
+                            lastJobsElementRef={lastJobsElementRef}
+                            jobs={list}
+                        />
+                    )
+                }
+            })}
         </div>
     );
 };
