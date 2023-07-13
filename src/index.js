@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { RouterProvider } from 'react-router-dom';
+
+import './styles/globals.css';
+
+import reportWebVitals from './configs/reportWebVitals';
+import router from './routes/route';
+
+import ToasterProviders from './utils/providers/ToasterProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}>
+      <ToasterProviders />
+    </RouterProvider>
   </React.StrictMode>
 );
 
