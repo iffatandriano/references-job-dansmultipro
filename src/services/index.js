@@ -7,6 +7,8 @@ const axiosInstance = axios.create({
     baseURL: env.API_BASE_URL
 })
 
+axiosInstance.defaults.headers.get['Content-Type'] = 'application/json';
+
 const endpoint = {
     jobs: '/recruitment/positions.json',
     jobsDetails: '/recruitment/positions'
