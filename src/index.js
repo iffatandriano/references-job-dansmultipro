@@ -8,13 +8,16 @@ import reportWebVitals from './configs/reportWebVitals';
 import router from './routes/route';
 
 import ToasterProviders from './utils/providers/ToasterProvider';
+import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-      <ToasterProviders />
-    </RouterProvider>
+      <CookiesProvider>
+        <RouterProvider router={router}>
+            <ToasterProviders />
+        </RouterProvider>
+      </CookiesProvider>
   </React.StrictMode>
 );
 

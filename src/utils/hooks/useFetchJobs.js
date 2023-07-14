@@ -9,6 +9,7 @@ function useFetchJobs(params) {
         records,
         setIsLoading,
         setRecords,
+        setNewRecords,
         setError,
     } = useJobsStore();
 
@@ -20,12 +21,16 @@ function useFetchJobs(params) {
       }
       await setError(false);
       const res = await getJobs(params)
-      await setRecords(res);
+      if(params.description || params.location || params.full_time) {
+        await setNewRecords(res);
+      } else {
+        await setRecords(res);
+      }
       setIsLoading(false);
     } catch (err) {
       setError(err);
     }
-  }, [params, setIsLoading, setError, setRecords, error]);
+  }, [params, setIsLoading, setError, setRecords, error, setNewRecords]);
 
   useEffect(() => {
     sendQuery(params);
